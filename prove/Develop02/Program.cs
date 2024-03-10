@@ -1,41 +1,38 @@
 using System;
+using classes;
 
 class Program
 {
     static void Main(string[] args)
     {
-     
-        // loop that will keep on asking if the user doent quit.
-        //menu on 5 options
-        bool quit = false;
-        while (!quit) 
-        {
-            Console.WriteLine("PLease select one of the following choices");
-            Console.WriteLine("1.Write\n2.Display\n3.load\n4.save\n5.Quit");
-            string user_respons = Console.ReadLine();
-            switch (user_respons) {
-                case "1":{
-                    string prompt = "randon question";
-                    Console.WriteLine(prompt);
-                    string user_answer = Console.ReadLine();
-                    DateTime time = DateTime.Now;
-                   
-                     break;
-                };
-                case "2": break;
-                case "3": break;
-                case "4": break;
-                case "5": break;
-                
-            
+        Journal journal1 = new Journal();
+        journal1.AddKeyValuePair();
+        classes.File file1 = new classes.File();
+        while (true) {
+            journal1.ShowMenu();
+            string answerStr = Console.ReadLine();
+            int answer = Int32.Parse(answerStr);
+            if (answer == 5){
+                break;
             }
-        
-
+            if (answer == 1){
+                
+                journal1.Write();
+            }
+            if(answer == 2){
+                journal1.DisplayEntry();
+            }
+            if (answer == 3){
+                string textentry = string.Join("|", journal1.responses);
+                file1.WriteFile(textentry);
+            }
+            if (answer == 4){
+                file1.LoadFile();
+            }
         }
-        //write
-        //display
-        //load
-        //save
-        //quit
+       
+    
     }
+
+        
 }
