@@ -1,45 +1,44 @@
 using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 public class Activity
 {
-    static void Main(string[] args)
-    {
-        Console.WriteLine("We!");
-    }
+     protected string _name;
+    protected string _description;
+    protected int _duration;
 
-    private string _name;
-    private string _description;
-    private int _duration;
-
-    public Activity (string name, string description, int duration)
+    public Activity(string name, string description)
     {
         _name = name;
         _description = description;
-        _duration = duration;
+    }
 
-    }
-    public void  DisplayStartingMessage()
+    public virtual void DisplayStartingMessage()
     {
-        Console.WriteLine ($"Welcome to {_name} activity: \n");
-         
-         
+        Console.WriteLine($"Welcome to {_name} activity:");
+        Console.WriteLine(_description);
+        Console.Write("Please enter the duration in seconds: ");
+        _duration = int.Parse(Console.ReadLine());
+        Console.WriteLine("Prepare to begin...");
+        Thread.Sleep(3000); 
     }
-   
+
     public void DisplayEndingMessage()
     {
-        Console.WriteLine($"Well Done!");
+        Console.WriteLine($"Well Done! You have completed the {_name} activity for {_duration} seconds.");
+        Thread.Sleep(3000); 
     }
-     
 
     public void ShowSpinner(int seconds)
     {
-        for (int i = 0; i <)
+        // Implement spinner animation here
     }
-     public void showCountDown(int seconds)
-     {
 
-     }
-
+    public void ShowCountdown(int seconds)
+    {
+        for (int i = seconds; i > 0; i--)
+        {
+            Console.WriteLine($"Countdown: {i}");
+            Thread.Sleep(1000); // Pause for 1 second
+        }
+    }
 }
