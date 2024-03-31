@@ -1,8 +1,6 @@
-using System;
-
-public class ListingActivity
+public class ListingActivity : Activity
 {
-    private List<string> _prompts = new List<string>
+    private static List<string> _prompts = new List<string>
     {
         "Who are people that you appreciate?",
         "What are personal strengths of yours?",
@@ -11,8 +9,12 @@ public class ListingActivity
         "Who are some of your personal heroes?"
     };
 
-    public ListingActivity() : base("Listing", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
+    public ListingActivity() : base("Listing", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.") { }
+
+    public static void Start()
     {
+        ListingActivity listingActivity = new ListingActivity();
+        listingActivity.Run();
     }
 
     public override void Run()
@@ -23,10 +25,7 @@ public class ListingActivity
         string randomPrompt = GetRandomItem(_prompts);
         Console.WriteLine(randomPrompt);
 
-        Console.WriteLine("You have 30 seconds to list as many items as you can...");
-        Thread.Sleep(30000); // Pause for 30 seconds
-
-        Console.WriteLine("Time's up!");
+        // Implement listing activity logic here
 
         DisplayEndingMessage();
     }

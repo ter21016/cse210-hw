@@ -1,8 +1,8 @@
 using System;
 
-public class Activity
+public abstract class Activity
 {
-     protected string _name;
+    protected string _name;
     protected string _description;
     protected int _duration;
 
@@ -12,20 +12,22 @@ public class Activity
         _description = description;
     }
 
-    public virtual void DisplayStartingMessage()
+    public abstract void Run();
+
+    public void DisplayStartingMessage()
     {
         Console.WriteLine($"Welcome to {_name} activity:");
         Console.WriteLine(_description);
         Console.Write("Please enter the duration in seconds: ");
         _duration = int.Parse(Console.ReadLine());
         Console.WriteLine("Prepare to begin...");
-        Thread.Sleep(3000); 
+        Thread.Sleep(3000);
     }
 
     public void DisplayEndingMessage()
     {
         Console.WriteLine($"Well Done! You have completed the {_name} activity for {_duration} seconds.");
-        Thread.Sleep(3000); 
+        Thread.Sleep(3000);
     }
 
     public void ShowSpinner(int seconds)

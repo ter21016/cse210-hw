@@ -160,3 +160,22 @@ public class Program
 
 
 }*/
+
+public class Resume
+{
+    public string _name ;
+    public List<Job> _jobs;
+}
+
+public class Job
+{
+    public string _company = "Micorsoft";
+    public string _jobTile = "Software Engineer";
+    public int _startYear = 2019;
+    public int _endYear = 2023;
+
+    public void Display()
+    {
+        Console.WriteLine($"{_jobTile} ({_company} {_startYear}`{_endYear})")
+    }
+}

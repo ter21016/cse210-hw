@@ -16,17 +16,14 @@ class Program
 
             switch (choice)
             {
-                case "1":
-                    BreathingActivity breathingActivity = new BreathingActivity();
-                    breathingActivity.Run();
+               case "1":
+                    BreathingActivity.Start();
                     break;
                 case "2":
-                    ReflectingActivity reflectingActivity = new ReflectingActivity();
-                    reflectingActivity.Run();
+                    ReflectingActivity.Start();
                     break;
                 case "3":
-                    ListingActivity listingActivity = new ListingActivity();
-                    listingActivity.Run();
+                    ListingActivity.Start();
                     break;
                 case "4":
                     Console.WriteLine("Exiting the program. Goodbye!");
@@ -35,7 +32,6 @@ class Program
                 default:
                     Console.WriteLine("Invalid choice. Please enter a number from 1 to 4.");
                     break;
-
             }
         }
    }
