@@ -1,25 +1,27 @@
+using System;
+
 public class EternalGoal : Goal
 {
-    public EternalGoal(string name, int points)
-    {
-        this.name = name;
-        this.points = points;
-    }
+    public EternalGoal(string name, string description, string points) : base(name, description, points) { }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
-        // Here you can implement the logic to record event for eternal goals
+        Console.WriteLine($"Congratulations! You have earned {_points} points!\n");
+        return Convert.ToInt32(_points);
     }
 
     public override bool IsComplete()
     {
-        // Eternal goals are never complete
         return false;
+    }
+
+    public override string GetDetailsString()
+    {
+        return $"{_shortname}: {_description}\nPoints: {_points}\nThis goal is eternal.";
     }
 
     public override string GetStringRepresentation()
     {
-        // Here you can implement the logic to get string representation of eternal goal
-        return $"Eternal Goal: {name}";
+        return $"eternal:{_shortname}:{_description}:{_points}";
     }
 }

@@ -1,29 +1,46 @@
+using System;
+using System.Diagnostics;
+
+
 public class ChecklistGoal : Goal
 {
-    private int completedTimes;
-    private int requiredTimes;
+    private int AmountCompleted;
+    private int Target;
+    private int Bonus;
 
-    public ChecklistGoal(string name, int points, int requiredTimes)
+    public ChecklistGoal(string name, string description, string points, int target, int bonus) : base(name, description, points)
     {
-        this.name = name;
-        this.points = points;
-        this.requiredTimes = requiredTimes;
+        AmountCompleted = 0;
+        Target = target;
+        Bonus = bonus;
     }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
-        // Here you can implement the logic to record event for checklist goals
-        completedTimes++;
+        AmountCompleted++;
+        if (IsComplete())
+            return Target + Bonus;
+        else
+            return Target;
     }
 
     public override bool IsComplete()
     {
-        return completedTimes >= requiredTimes;
+        return AmountCompleted >= Target;
+    }
+
+    public override string GetDetailsString()
+    {
+        return $"{_shortname}: {_description}\nPoints: {_points}\nTarget: {Target}\nBonus: {Bonus}";
     }
 
     public override string GetStringRepresentation()
     {
-        // Here you can implement the logic to get string representation of checklist goal
-        return $"Checklist Goal: {name}, Completed {completedTimes}/{requiredTimes} times";
+        return $"checklist:{_shortname}:{_description}:{_points}:{Target}:{Bonus}:{AmountCompleted}";
+    }
+
+    private string GetDebuggerDisplay()
+    {
+        return ToString();
     }
 }

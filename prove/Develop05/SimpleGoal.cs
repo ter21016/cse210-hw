@@ -1,28 +1,28 @@
+using System;
+
 public class SimpleGoal : Goal
 {
+    public SimpleGoal(string name, string description, string points) : base(name, description, points) { }
 
-    SimpleGoal myGoal = new SimpleGoal("Study the Scriptures", 100);
-
-    public SimpleGoal(string name, int points)
+    public override int RecordEvent()
     {
-        this.name = name;
-        this.points = points;
-    }
-
-    public override void RecordEvent()
-    {
-        // Here you can implement the logic to record event for simple goals
+        Console.WriteLine($"Congratulations! You have earned {_points} points!\n");
+        return Convert.ToInt32(_points);
     }
 
     public override bool IsComplete()
     {
-        // Here you can implement the logic to check if simple goal is complete
-        return false;
+        return true;
+    }
+
+    public override string GetDetailsString()
+    {
+        return $"{_shortname}: {_description}\nPoints: {_points}\nThis goal is simple.";
     }
 
     public override string GetStringRepresentation()
     {
-        // Here you can implement the logic to get string representation of simple goal
-        return $"Simple Goal: {name}";
+        return $"simple:{_shortname}:{_description}:{_points}";
     }
 }
+
