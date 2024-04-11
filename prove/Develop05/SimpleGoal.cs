@@ -1,28 +1,25 @@
-using System;
-
 public class SimpleGoal : Goal
 {
-    public SimpleGoal(string name, string description, string points) : base(name, description, points) { }
+    private bool _isComplete;
 
-    public override int RecordEvent()
+    public SimpleGoal(string name, string description, int points) : base(name, description, points)
     {
-        Console.WriteLine($"Congratulations! You have earned {_points} points!\n");
-        return Convert.ToInt32(_points);
+        _isComplete = false;
+    }
+
+    public override void RecordEvent()
+    {
+        _isComplete = true;
     }
 
     public override bool IsComplete()
     {
-        return true;
-    }
-
-    public override string GetDetailsString()
-    {
-        return $"{_shortname}: {_description}\nPoints: {_points}\nThis goal is simple.";
+        return _isComplete;
     }
 
     public override string GetStringRepresentation()
     {
-        return $"simple:{_shortname}:{_description}:{_points}";
+        return $"{_shortName}; {_description}; {_points}; {_isComplete}";
     }
 }
 

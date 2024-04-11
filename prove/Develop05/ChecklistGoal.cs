@@ -1,46 +1,35 @@
-using System;
-using System.Diagnostics;
-
-
 public class ChecklistGoal : Goal
 {
-    private int AmountCompleted;
-    private int Target;
-    private int Bonus;
+    private int _amountCompleted;
+    private int _target;
+    private int _bonus;
 
-    public ChecklistGoal(string name, string description, string points, int target, int bonus) : base(name, description, points)
+    public ChecklistGoal(string name, string description, int points, int target, int bonus) : base(name, description, points)
     {
-        AmountCompleted = 0;
-        Target = target;
-        Bonus = bonus;
+        _amountCompleted = 0;
+        _target = target;
+        _bonus = bonus;
     }
 
-    public override int RecordEvent()
+    public override void RecordEvent()
     {
-        AmountCompleted++;
-        if (IsComplete())
-            return Target + Bonus;
-        else
-            return Target;
+        _amountCompleted++;
     }
 
     public override bool IsComplete()
     {
-        return AmountCompleted >= Target;
+        return _amountCompleted >= _target;
     }
 
     public override string GetDetailsString()
     {
-        return $"{_shortname}: {_description}\nPoints: {_points}\nTarget: {Target}\nBonus: {Bonus}";
+        return $"{base.GetDetailsString()} ({_amountCompleted}/{_target})";
     }
 
     public override string GetStringRepresentation()
     {
-        return $"checklist:{_shortname}:{_description}:{_points}:{Target}:{Bonus}:{AmountCompleted}";
-    }
-
-    private string GetDebuggerDisplay()
-    {
-        return ToString();
+        return $"{_shortName}; {_description}; {_points}; {_amountCompleted}; {_target}; {_bonus}";
     }
 }
+
+
